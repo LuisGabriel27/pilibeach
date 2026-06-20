@@ -276,15 +276,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Room Data ----
   const roomsData = {
-    'pili-beachfront-villa': {
-      name: 'PILI 3 Bedroom Beachfront Villa',
+    'lion': {
+      name: 'Lion',
       price: '₱5,000 - ₱6,000',
       capacity: '7-10 Pax',
       description: 'Our premier beachfront villa offers the ultimate island escape. Located right on the shoreline, wake up to stunning ocean views and the sound of gentle waves. This spacious 3-bedroom villa is perfect for families or groups seeking a private, luxurious getaway. Enjoy direct beach access, a private terrace, and breathtaking sunsets from your doorstep.',
       images: [
-        'images/rooms/beachfront-villa.png',
-        'images/gallery/beach.png',
-        'images/gallery/sunset.png'
+        'images/rooms/lion/1.jpg',
+        'images/rooms/lion/2.jpg',
+        'images/rooms/lion/3.jpg',
+        'images/rooms/lion/4.jpg',
+        'images/rooms/lion/5.jpg'
       ],
       inclusions: [
         'Daily breakfast for guests',
@@ -307,15 +309,16 @@ document.addEventListener('DOMContentLoaded', () => {
         { icon: 'fa-wifi', label: 'Free Wi-Fi' }
       ]
     },
-    'pili-poolside-bungalow': {
-      name: 'PILI Poolside Bungalow',
+    'lizard': {
+      name: 'Lizard',
       price: '₱3,000 - ₱3,500',
       capacity: '2-5 Pax',
       description: 'Relax in our charming poolside bungalow, perfectly positioned right next to the resort\'s sparkling swimming pool surrounded by towering coconut trees. Ideal for couples or small families, this cozy bungalow offers a serene tropical retreat with easy access to all resort amenities.',
       images: [
-        'images/rooms/poolside-bungalow.png',
-        'images/gallery/pool.png',
-        'images/gallery/garden.png'
+        'images/rooms/lizard/1.jpg',
+        'images/rooms/lizard/2.jpg',
+        'images/rooms/lizard/3.jpg',
+        'images/rooms/lizard/4.jpg'
       ],
       inclusions: [
         'Daily breakfast for guests',
@@ -336,15 +339,17 @@ document.addEventListener('DOMContentLoaded', () => {
         { icon: 'fa-wifi', label: 'Free Wi-Fi' }
       ]
     },
-    'pili-garden-bungalow': {
-      name: 'PILI Garden Bungalow',
+    'turtle': {
+      name: 'Turtle',
       price: '₱2,000 - ₱2,500',
       capacity: '2-4 Pax',
-      description: 'Nestled among lush tropical gardens, our PILI Garden Bungalow offers a peaceful and nature-filled retreat. Surrounded by vibrant greenery, swaying palms, and colorful flowers, this cozy bungalow is perfect for guests seeking tranquility and a close connection with nature while still being steps away from the beach and pool.',
+      description: 'Nestled among lush tropical gardens, The Turtle Bungalow offers a peaceful and nature-filled retreat. Surrounded by vibrant greenery, swaying palms, and colorful flowers, this cozy bungalow is perfect for guests seeking tranquility and a close connection with nature while still being steps away from the beach and pool.',
       images: [
-        'images/rooms/garden-bungalow.png',
-        'images/gallery/garden.png',
-        'images/gallery/aerial.png'
+        'images/rooms/turtle/1.jpg',
+        'images/rooms/turtle/2.jpg',
+        'images/rooms/turtle/3.jpg',
+        'images/rooms/turtle/4.jpg',
+        'images/rooms/turtle/5.jpg'
       ],
       inclusions: [
         'Daily breakfast for guests',
@@ -364,15 +369,17 @@ document.addEventListener('DOMContentLoaded', () => {
         { icon: 'fa-wifi', label: 'Free Wi-Fi' }
       ]
     },
-    'kia-poolside-villa': {
-      name: 'KIA 2 Bedroom Poolside Villa',
+    'shark': {
+      name: 'Shark',
       price: '₱5,000 - ₱6,000',
       capacity: '5-7 Pax',
-      description: 'The KIA 2 Bedroom Poolside Villa offers spacious accommodations with a premium poolside location in the Kia-Ora section of the resort. Featuring two well-appointed bedrooms, modern furnishings, and direct access to the pool area, this villa is perfect for families or friend groups looking for comfort and convenience.',
+      description: 'The Shark Villa offers spacious accommodations with a premium poolside location in the Kia-Ora section of the resort. Featuring two well-appointed bedrooms, modern furnishings, and direct access to the pool area, this villa is perfect for families or friend groups looking for comfort and convenience.',
       images: [
-        'images/rooms/kia-poolside-villa.png',
-        'images/gallery/pool.png',
-        'images/gallery/aerial.png'
+        'images/rooms/shark/1.jpg',
+        'images/rooms/shark/2.jpg',
+        'images/rooms/shark/3.jpg',
+        'images/rooms/shark/4.jpg',
+        'images/rooms/shark/5.jpg'
       ],
       inclusions: [
         'Daily breakfast for guests',
@@ -394,15 +401,17 @@ document.addEventListener('DOMContentLoaded', () => {
         { icon: 'fa-wifi', label: 'Free Wi-Fi' }
       ]
     },
-    'kia-garden-bungalow-5': {
-      name: 'KIA Garden Bungalow',
+    'stingray': {
+      name: 'Stingray',
       price: '₱2,500 - ₱3,000',
       capacity: '2-5 Pax',
-      description: 'Located in the serene Kia-Ora section of the resort, this Garden Bungalow is a spacious retreat surrounded by tropical gardens. With room for up to 5 guests, it\'s ideal for small groups or families who want a quiet escape with easy access to the pool, beach, and all resort activities.',
+      description: 'Located in the serene Kia-Ora section of the resort, The Stingray Bungalow is a spacious retreat surrounded by tropical gardens. With room for up to 5 guests, it\'s ideal for small groups or families who want a quiet escape with easy access to the pool, beach, and all resort activities.',
       images: [
-        'images/rooms/kia-garden-bungalow.png',
-        'images/gallery/garden.png',
-        'images/gallery/beach.png'
+        'images/rooms/stingray/2.jpg',
+        'images/rooms/stingray/1.jpg',
+        'images/rooms/stingray/3.jpg',
+        'images/rooms/stingray/4.jpg',
+        'images/rooms/stingray/5.jpg'
       ],
       inclusions: [
         'Daily breakfast for guests',
@@ -422,15 +431,17 @@ document.addEventListener('DOMContentLoaded', () => {
         { icon: 'fa-wifi', label: 'Free Wi-Fi' }
       ]
     },
-    'kia-garden-bungalow-4': {
-      name: 'KIA Garden Bungalow',
+    'gecko': {
+      name: 'Gecko',
       price: '₱2,000 - ₱2,500',
       capacity: '2-4 Pax',
       description: 'A cozy and affordable garden bungalow in the Kia-Ora area, perfect for couples or small families. Enjoy the peaceful ambiance of the tropical garden setting while having full access to all the resort\'s amenities including the pool, beach, and water activities.',
       images: [
-        'images/rooms/kia-garden-bungalow.png',
-        'images/gallery/garden.png',
-        'images/gallery/sunset.png'
+        'images/rooms/gecko/3.jpg',
+        'images/rooms/gecko/2.jpg',
+        'images/rooms/gecko/1.jpg',
+        'images/rooms/gecko/4.jpg',
+        'images/rooms/gecko/5.jpg'
       ],
       inclusions: [
         'Daily breakfast for guests',
