@@ -159,32 +159,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // GALLERY: Filter buttons
+  // GALLERY: All 30 image paths for lightbox
   // ============================================
-  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const allGalleryImages = [];
+  for (let i = 1; i <= 30; i++) {
+    allGalleryImages.push(`images/gallery/${i}.jpg`);
+  }
+
   const galleryItems = document.querySelectorAll('.gallery-item');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-
-      // Update active button
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Filter gallery items
-      galleryItems.forEach(item => {
-        const category = item.dataset.category;
-
-        if (filter === 'all' || category === filter) {
-          item.style.display = '';
-          item.style.animation = 'fadeIn 0.5s ease forwards';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-  });
 
   // ============================================
   // GALLERY: Lightbox
@@ -196,24 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxNext = document.getElementById('lightboxNext');
 
   let currentLightboxIndex = 0;
-  let visibleGalleryImages = [];
-
-  function getVisibleImages() {
-    visibleGalleryImages = [];
-    galleryItems.forEach(item => {
-      if (item.style.display !== 'none') {
-        const img = item.querySelector('img');
-        if (img) {
-          visibleGalleryImages.push(img.src);
-        }
-      }
-    });
-  }
 
   function openLightbox(index) {
-    getVisibleImages();
     currentLightboxIndex = index;
-    lightboxImg.src = visibleGalleryImages[currentLightboxIndex];
+    lightboxImg.src = allGalleryImages[currentLightboxIndex];
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -225,29 +193,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function navigateLightbox(direction) {
     currentLightboxIndex += direction;
-    if (currentLightboxIndex >= visibleGalleryImages.length) {
+    if (currentLightboxIndex >= allGalleryImages.length) {
       currentLightboxIndex = 0;
     }
     if (currentLightboxIndex < 0) {
-      currentLightboxIndex = visibleGalleryImages.length - 1;
+      currentLightboxIndex = allGalleryImages.length - 1;
     }
     lightboxImg.style.opacity = '0';
     setTimeout(() => {
-      lightboxImg.src = visibleGalleryImages[currentLightboxIndex];
+      lightboxImg.src = allGalleryImages[currentLightboxIndex];
       lightboxImg.style.opacity = '1';
     }, 200);
   }
 
-  // Gallery item click
-  galleryItems.forEach((item, i) => {
+  // Gallery item click — opens lightbox at the clicked image index
+  galleryItems.forEach((item) => {
     item.addEventListener('click', () => {
-      // Find the visible index
-      getVisibleImages();
-      const imgSrc = item.querySelector('img').src;
-      const visibleIndex = visibleGalleryImages.indexOf(imgSrc);
-      openLightbox(visibleIndex >= 0 ? visibleIndex : 0);
+      const index = parseInt(item.dataset.index, 10);
+      openLightbox(index);
     });
   });
+
+  // "View All Photos" button — opens lightbox starting at first image
+  const viewAllBtn = document.getElementById('galleryViewAll');
+  if (viewAllBtn) {
+    viewAllBtn.addEventListener('click', () => {
+      openLightbox(0);
+    });
+  }
 
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
