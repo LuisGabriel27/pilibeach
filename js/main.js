@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'Shark',
       price: '₱5,000 - ₱6,000',
       capacity: '5-7 Pax',
-      description: 'The Shark Villa offers spacious accommodations with a premium poolside location in the Kia-Ora section of the resort. Featuring two well-appointed bedrooms, modern furnishings, and direct access to the pool area, this villa is perfect for families or friend groups looking for comfort and convenience.',
+      description: 'The Shark Villa offers spacious accommodations with a premium poolside location at the resort. Featuring two well-appointed bedrooms, modern furnishings, and direct access to the pool area, this villa is perfect for families or friend groups looking for comfort and convenience.',
       images: [
         'images/rooms/shark/1.jpg',
         'images/rooms/shark/2.jpg',
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'Stingray',
       price: '₱2,500 - ₱3,000',
       capacity: '2-5 Pax',
-      description: 'Located in the serene Kia-Ora section of the resort, The Stingray Bungalow is a spacious retreat surrounded by tropical gardens. With room for up to 5 guests, it\'s ideal for small groups or families who want a quiet escape with easy access to the pool, beach, and all resort activities.',
+      description: 'Located in a serene section of the resort, The Stingray Bungalow is a spacious retreat surrounded by tropical gardens. With room for up to 5 guests, it\'s ideal for small groups or families who want a quiet escape with easy access to the pool, beach, and all resort activities.',
       images: [
         'images/rooms/stingray/2.jpg',
         'images/rooms/stingray/1.jpg',
@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'Gecko',
       price: '₱2,000 - ₱2,500',
       capacity: '2-4 Pax',
-      description: 'A cozy and affordable garden bungalow in the Kia-Ora area, perfect for couples or small families. Enjoy the peaceful ambiance of the tropical garden setting while having full access to all the resort\'s amenities including the pool, beach, and water activities.',
+      description: 'A cozy and affordable garden bungalow at Pili Beach Resort, perfect for couples or small families. Enjoy the peaceful ambiance of the tropical garden setting while having full access to all the resort\'s amenities including the pool, beach, and water activities.',
       images: [
         'images/rooms/gecko/3.jpg',
         'images/rooms/gecko/2.jpg',
