@@ -159,14 +159,72 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // GALLERY: All 30 image paths for lightbox
+  // GALLERY: All 30 images with category metadata
   // ============================================
-  const allGalleryImages = [];
-  for (let i = 1; i <= 30; i++) {
-    allGalleryImages.push(`images/gallery/${i}.jpg`);
-  }
+  const allGalleryImages = [
+    { src: 'images/gallery/1.jpg', category: 'rooms' },
+    { src: 'images/gallery/2.jpg', category: 'rooms' },
+    { src: 'images/gallery/3.jpg', category: 'food' },
+    { src: 'images/gallery/4.jpg', category: 'rooms' },
+    { src: 'images/gallery/5.jpg', category: 'food' },
+    { src: 'images/gallery/6.jpg', category: 'food' },
+    { src: 'images/gallery/7.jpg', category: 'food' },
+    { src: 'images/gallery/8.jpg', category: 'food' },
+    { src: 'images/gallery/9.jpg', category: 'beach' },
+    { src: 'images/gallery/10.jpg', category: 'beach' },
+    { src: 'images/gallery/11.jpg', category: 'beach' },
+    { src: 'images/gallery/12.jpg', category: 'beach' },
+    { src: 'images/gallery/13.jpg', category: 'beach' },
+    { src: 'images/gallery/14.jpg', category: 'beach' },
+    { src: 'images/gallery/15.jpg', category: 'diving' },
+    { src: 'images/gallery/16.jpg', category: 'diving' },
+    { src: 'images/gallery/17.jpg', category: 'diving' },
+    { src: 'images/gallery/18.jpg', category: 'diving' },
+    { src: 'images/gallery/19.jpg', category: 'diving' },
+    { src: 'images/gallery/20.jpg', category: 'food' },
+    { src: 'images/gallery/21.jpg', category: 'food' },
+    { src: 'images/gallery/22.jpg', category: 'food' },
+    { src: 'images/gallery/23.jpg', category: 'food' },
+    { src: 'images/gallery/24.jpg', category: 'diving' },
+    { src: 'images/gallery/25.jpg', category: 'diving' },
+    { src: 'images/gallery/26.jpg', category: 'diving' },
+    { src: 'images/gallery/27.jpg', category: 'diving' },
+    { src: 'images/gallery/28.jpg', category: 'diving' },
+    { src: 'images/gallery/29.jpg', category: 'beach' },
+    { src: 'images/gallery/30.jpg', category: 'beach' }
+  ];
+
+  // Flat array of just paths for lightbox navigation
+  const allGalleryPaths = allGalleryImages.map(img => img.src);
 
   const galleryItems = document.querySelectorAll('.gallery-item');
+
+  // ============================================
+  // GALLERY: Filter Tabs
+  // ============================================
+  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      galleryItems.forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.style.display = '';
+          // Trigger re-animate
+          item.style.animation = 'none';
+          item.offsetHeight; // force reflow
+          item.style.animation = 'galleryFadeIn 0.5s ease forwards';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
 
   // ============================================
   // GALLERY: Lightbox
@@ -181,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openLightbox(index) {
     currentLightboxIndex = index;
-    lightboxImg.src = allGalleryImages[currentLightboxIndex];
+    lightboxImg.src = allGalleryPaths[currentLightboxIndex];
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -193,24 +251,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function navigateLightbox(direction) {
     currentLightboxIndex += direction;
-    if (currentLightboxIndex >= allGalleryImages.length) {
+    if (currentLightboxIndex >= allGalleryPaths.length) {
       currentLightboxIndex = 0;
     }
     if (currentLightboxIndex < 0) {
-      currentLightboxIndex = allGalleryImages.length - 1;
+      currentLightboxIndex = allGalleryPaths.length - 1;
     }
     lightboxImg.style.opacity = '0';
     setTimeout(() => {
-      lightboxImg.src = allGalleryImages[currentLightboxIndex];
+      lightboxImg.src = allGalleryPaths[currentLightboxIndex];
       lightboxImg.style.opacity = '1';
     }, 200);
   }
 
-  // Gallery item click — opens lightbox at the clicked image index
+  // Gallery item click — opens lightbox at the image shown in that item
   galleryItems.forEach((item) => {
     item.addEventListener('click', () => {
-      const index = parseInt(item.dataset.index, 10);
-      openLightbox(index);
+      const imgSrc = item.querySelector('img').getAttribute('src');
+      const idx = allGalleryPaths.indexOf(imgSrc);
+      openLightbox(idx >= 0 ? idx : 0);
     });
   });
 
