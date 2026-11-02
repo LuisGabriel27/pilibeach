@@ -310,7 +310,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const roomsData = {
     'lion': {
       name: 'Lion',
-      price: '₱5,000 - ₱6,000',
+      promotionId: 'habagat',
+      promoPrice: '₱5,000 - ₱6,000',
       capacity: '7-10 Pax',
       description: 'Our premier beachfront villa offers the ultimate island escape. Located right on the shoreline, wake up to stunning ocean views and the sound of gentle waves. This spacious 3-bedroom villa is perfect for families or groups seeking a private, luxurious getaway. Enjoy direct beach access, a private terrace, and breathtaking sunsets from your doorstep.',
       images: [
@@ -343,7 +344,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'lizard': {
       name: 'Lizard',
-      price: '₱3,000 - ₱3,500',
+      promotionId: 'habagat',
+      promoPrice: '₱3,000 - ₱3,500',
       capacity: '2-5 Pax',
       description: 'Relax in our charming poolside bungalow, perfectly positioned right next to the resort\'s sparkling swimming pool surrounded by towering coconut trees. Ideal for couples or small families, this cozy bungalow offers a serene tropical retreat with easy access to all resort amenities.',
       images: [
@@ -373,7 +375,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'turtle': {
       name: 'Turtle',
-      price: '₱2,000 - ₱2,500',
+      promotionId: 'habagat',
+      promoPrice: '₱2,000 - ₱2,500',
       capacity: '2-4 Pax',
       description: 'Nestled among lush tropical gardens, The Turtle Bungalow offers a peaceful and nature-filled retreat. Surrounded by vibrant greenery, swaying palms, and colorful flowers, this cozy bungalow is perfect for guests seeking tranquility and a close connection with nature while still being steps away from the beach and pool.',
       images: [
@@ -403,7 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'shark': {
       name: 'Shark',
-      price: '₱5,000 - ₱6,000',
+      promotionId: 'habagat',
+      promoPrice: '₱5,000 - ₱6,000',
       capacity: '5-7 Pax',
       description: 'The Shark Villa offers spacious accommodations with a premium poolside location at the resort. Featuring two well-appointed bedrooms, modern furnishings, and direct access to the pool area, this villa is perfect for families or friend groups looking for comfort and convenience.',
       images: [
@@ -435,7 +439,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'stingray': {
       name: 'Stingray',
-      price: '₱2,500 - ₱3,000',
+      promotionId: 'habagat',
+      promoPrice: '₱2,500 - ₱3,000',
       capacity: '2-5 Pax',
       description: 'Located in a serene section of the resort, The Stingray Bungalow is a spacious retreat surrounded by tropical gardens. With room for up to 5 guests, it\'s ideal for small groups or families who want a quiet escape with easy access to the pool, beach, and all resort activities.',
       images: [
@@ -465,7 +470,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'gecko': {
       name: 'Gecko',
-      price: '₱2,000 - ₱2,500',
+      promotionId: 'habagat',
+      promoPrice: '₱2,000 - ₱2,500',
       capacity: '2-4 Pax',
       description: 'A cozy and affordable garden bungalow at Pili Beach Resort, perfect for couples or small families. Enjoy the peaceful ambiance of the tropical garden setting while having full access to all the resort\'s amenities including the pool, beach, and water activities.',
       images: [
@@ -495,6 +501,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // ---- Seasonal offers and their associated room rates ----
+  let promotionTimer;
+
+  function refreshPromotions() {
+    const now = new Date();
+    PiliPromotions.refreshPage(document, roomsData, now);
+
+    // Recheck at the next change, including tabs left open across midnight.
+    // The daily cap also avoids browsers' maximum timeout duration.
+    window.clearTimeout(promotionTimer);
+    const nextChange = PiliPromotions.getNextChange(now);
+    if (nextChange !== null) {
+      promotionTimer = window.setTimeout(refreshPromotions, Math.min(nextChange - now.getTime(), 86400000));
+    }
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshPromotions();
+  });
+  window.addEventListener('pageshow', refreshPromotions);
+
   // ---- Open Room Modal ----
   function openRoomModal(roomId) {
     const room = roomsData[roomId];
@@ -502,7 +529,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Populate title, price, capacity
     document.getElementById('roomModalTitle').textContent = room.name;
-    document.getElementById('roomModalPrice').innerHTML = `${room.price} <span>/ night</span>`;
+    roomModal.dataset.roomId = roomId;
+    PiliPromotions.renderRoomPrice(document.getElementById('roomModalPrice'), room);
     document.getElementById('roomModalCapacity').innerHTML =
       `<i class="fa-solid fa-users"></i> <span>${room.capacity}</span>`;
     document.getElementById('roomModalDescription').innerHTML = `<p>${room.description}</p>`;
@@ -637,6 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   // INITIAL STATE
   // ============================================
+  refreshPromotions();
   handleNavbarScroll();
   highlightActiveNavLink();
 });
